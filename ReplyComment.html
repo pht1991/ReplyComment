@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>回复</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/js.js"></script>
+
+</head>
+<body>
+<div id="problem" class="w1200">
+    <div class="tags">
+        <span class="tag">食品</span>
+        <span class="tag">中国</span>
+        <span class="tag">饮料</span>
+        <span class="tag">食品检测</span>
+        <span class="tag">标准</span>
+        <span class="tag">176</span>
+    </div>
+    <span class="desc">我最近买的食品、饮料吃后不舒服，现想做食品饮料检测，请问有没有相关的标准，需要检测多少项目？</span>
+    <div class="bottom">
+        <span class="name">CMKJ</span><span class="line"></span><span>2016-11-23</span>
+    </div>
+    <div class="sanjiao"></div>
+</div>
+<div id="count" class="w1200">
+    <p>共2条回答</p>
+</div>
+<div id="articleComment" class="w1200">
+    <ul id="commentItems" style="margin-bottom:20px;"></ul>
+</div>
+
+<script>
+    var agoComment = [
+        {"id": 1,"sortID": 0, "userName": "李聪","from":"李聪","head": "img/li-2.png","identity":"专家","time": "2014-04-04","content": "第一条评论", "to":"CMKJ","toIdentity":"其他"},
+        {"id": 2,"sortID": 0, "userName": "李聪","from":"李聪","head": "img/li-2.png","identity":"专家","time": "2014-04-04","content": "第二条评论", "to":"CMKJ","toIdentity":"其他"},
+        {"id": 3,"sortID": 1, "userName": "CMKJ","from":"CMKJ","head": "img/C-3.png","identity":"其他","time": "2014-04-04", "content": "第一条评论的回复", "to":"李聪","toIdentity":"专家"},
+        {"id": 4,"sortID": 2, "userName": "CMKJ","from":"CMKJ","head": "img/C-3.png","identity":"其他","time": "2014-04-04", "content": "第二条评论的回复", "to":"李聪","toIdentity":"专家"},
+        {"id": 5,"sortID": 0, "userName": "李聪","from":"李聪","head": "img/li-2.png","identity":"专家","time": "2014-04-04", "content": "第三条评论", "to":"CMKJ","toIdentity":"其他"},
+        {"id": 6,"sortID": 2, "userName": "游客2","from":"游客2","head": "img/none.png","identity":"其他","time": "2014-04-04", "content": "第二条评论的回复2", "to":"李聪","toIdentity":"专家"}
+    ];
+    $("#articleComment").cmComment({
+        "agoComment": agoComment,
+        "callback": function () {
+            // 添加新的评论
+            $("#articleComment").cmComment("setCommentAfter", {
+                "id": parseInt(Math.random()*1000),
+                "userName": "pht",
+                "head": "img/C-3.png",
+                "identity":"其他",
+                "time": new Date(),
+                "content": $('#commentContent').val()
+            });
+
+        }
+    });
+
+    //添加折叠评论js
+    $('#commentItems').on('click','.more',function () {
+        var flag;
+        if($(this).parent().next().css('display') == 'none'){
+            flag = false;
+        }else {
+            flag = true;
+        }
+        if (!flag){
+            $(this).parent().next().show();
+            $(this).text('收起评论');
+        }else {
+            $(this).parent().next().hide();
+            $(this).text('更多评论');
+        }
+    })
+
+</script>
+</body>
+</html>
